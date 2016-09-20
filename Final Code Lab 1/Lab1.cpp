@@ -21,9 +21,8 @@ void print_array(int *x, int y);  //Q6b
 void reverse_array(int *x, int y); //Q7
 int min_array(int *x,int y); //Q8
 int sum_array(int *x, int y);//Q9
-//Q10
-//Q11
-
+int sort_array(int *array, int x);//Q10
+void pass_filter(int *x,int y, int z);//Q11
 void make_array(int*** l, int i, int j, int k); //Q12A
 void print_array3(int*** l, int i, int j, int k);//Q12B
 
@@ -38,6 +37,7 @@ int main(){
 
 	//<question 2>
 	string input;
+	cout<<"Question 2"<<endl;
 	cout <<"Please enter the number five, it should tell you that it took five steps:"<< endl;
 	cin >> input;
 	int number = atoi (input.c_str());
@@ -53,7 +53,7 @@ int main(){
 	int y = rand() % 100 + 1;//Random Number 2
 	int z = rand() % 100 + 1; //Random Number 3
 
-	cout <<"Your three random numbers are: "<< x <<", "<< y <<", "<< z << endl;
+	cout <<"Question 3, Your three random numbers are: "<< x <<", "<< y <<", "<< z << endl;
 	int result = sort_by_order(&z, &y, &x); //<\question 3>
 	// mixed up x,y,z to show that is has to sort by value from least to greatest
 	// and that it recognizes what the smallest value is.
@@ -63,7 +63,7 @@ int main(){
 
 	//QUESTION 4
 	int i =3;
-	cout <<"Test Number: "<< i <<"."<<"   Perfect Number: "<<perfect_number(i, 1, 0)<< endl;
+	cout <<"Question 4, Test Number: "<< i <<"."<<"   Perfect Number: "<<perfect_number(i, 1, 0)<< endl;
 
 
 
@@ -74,7 +74,7 @@ int main(){
 	// x,y,z input in alphabetical order x,y,z to show that is has to sort by value from least to greatest
 	// and that it recognizes what the smallest value is regardless of order input into func.
 
-	cout <<"Your three random numbers are: "<< x1 <<", "<< y1 <<", "<< z1 << endl;
+	cout <<"Question 5: Your three random numbers are: "<< x1 <<", "<< y1 <<", "<< z1 << endl;
 	int result2 = sort_by_order2(x1, y1, z1); //Call Sort By Order 2
 	cout<< "The smallest of the 3 numbers is:" <<  result2 << endl; //Result
 
@@ -84,29 +84,40 @@ int main(){
 	random_array(&array[0], size);
 
 	//Question 6B
-	cout<< "Print Array"<<endl;
+	cout<< "Print Array, Question 6B"<<endl;
 	print_array(&array[0], size);
 
 	//QUESTION 7
-	cout<<"Reverse Array"<<endl;
+	cout<<"Reverse Array, Question 7"<<endl;
 	reverse_array(&array[0], size);
 
 
 	//QUESTION 8
-	cout<<"MINIMUM VALUE"<<endl;
+	cout<<"MINIMUM VALUE, Question 8"<<endl;
 	min_array(&array[0],size);
 
 
 	//QUESTION 9
-	cout<<"SUM OF VALUES"<<endl;
+	cout<<"SUM OF VALUES, Question 9"<<endl;
 
 	int sum1 = sum_array(&array[0], size);
 	cout<<sum1<<endl;
 
 	//QUESTION 10
 
+	cout<<"Total Count, Question 10"<<endl;
+	int count1 = sort_array(&array[0], size);
+	cout<< count1 << endl;
+
 
 	//QUESTION 11
+	int arrayX[15] = {3,2,7,0,4,2,1,6,4,2,9,5,4,2,3};
+	int windowX = 5;
+	int sizeX = 15;
+
+	pass_filter(arrayX ,windowX, sizeX);
+	cout<< "Pass Filter, Question 11"<<endl;
+	print_array(arrayX, 15);
 
 
 	//QUESTION 12
@@ -282,9 +293,57 @@ int sum_array(int *arr, int size){
 	return sum;
 }
 //QUESTION  10
+int sort_array(int array[], int length){
+	int Num;
+	int count = 0;
+	for (int i = 0; i < length; i++){
+		count +=1;
+		for (int j = 1; j < length -1; j++){
+			count +=1;
+			if(array[j]<array[i]){
+				Num = array[i];
+				array[i] = array[j];
+				array[j] = Num;
+				count +=1;
+			}
+		}
+	}
+
+	return count;
+}
 
 
 //QUESTION  11
+void pass_filter(int array[],int window, int size){
+	if(window %2 == 0){
+		window +=1;
+	}
+	int Array2[size];
+	for (int i= 0; i < size; i++){
+		if (i<window/2){
+			array[i]=0;
+		}
+		else if(i >= size-window/2){
+			array[i]=0;
+		}
+		else{
+			int sum = 0;
+			for (int j=0; j <window; j++){
+				if(j<= window/2){
+					sum += Array2[i-j];
+				}
+				else{
+					sum += Array2[i+j - window/2];
+
+				}
+				array[i] = sum/window;
+			}
+
+		}
+
+	}
+	return;
+}
 
 
 //QUESTION  12
@@ -297,8 +356,8 @@ void make_array(int*** array, int height, int width, int depth){
 			array[i][j] = new int [depth];
 
 			for (int k = 0; k == depth; k++){
-				array[i][j][k] =  new int;
-				*array[i][j][k]= i+j+k;
+				//array[i][j][k] =  new int;
+				//*array[i][j][k]= i+j+k;
 			}
 		}
 	}
@@ -326,17 +385,11 @@ void print_array3(int*** array, int height, int width, int depth){
 			delete array[i][j];
 
 			for (int k = 0; k == depth; k++) {
-				delete array[i][j][k];
+				//delete array[i][j][k];
 			}
 		}
 	}
 	delete array;
-
-
-
-
-
-
 
  return;
 }
