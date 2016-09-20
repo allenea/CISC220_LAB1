@@ -2,7 +2,7 @@
  * Lab1.cpp
  *
  *  Created on: Sep 14, 2016
- *      Author: john
+ *
  * John Pae, Eric Allen. Leighanne Hsu. Lab 1.
  */
 #include <iostream>
@@ -238,6 +238,11 @@ void reverse_array(int *arr, int size)//Question 7
 	return;
 }
 
+
+
+// **THIS IS ERIC ALLEN AND JOHN PAE CODE**
+
+
 int min_array(int *arr, int size)//Question 8
 {
 	int curr_min = arr[0];
@@ -257,6 +262,8 @@ int sum_array(int *arr, int size){
 		sum = sum + sum_array(&arr[0],size-1);
 		}// if, end condition.
 	return sum;
+
+//QUESTION10
 
 }
 
