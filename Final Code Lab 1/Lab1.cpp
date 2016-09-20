@@ -2,7 +2,6 @@
  * Lab1.cpp
  *
  *  Created on: Sep 14, 2016
- *
  * John Pae, Eric Allen. Leighanne Hsu. Lab 1.
  */
 #include <iostream>
@@ -22,7 +21,11 @@ void print_array(int *x, int y);  //Q6b
 void reverse_array(int *x, int y); //Q7
 int min_array(int *x,int y); //Q8
 int sum_array(int *x, int y);//Q9
+//Q10
+//Q11
 
+void make_array(int*** l, int i, int j, int k); //Q12A
+void print_array3(int*** l, int i, int j, int k);//Q12B
 
 //Main:
 int main(){
@@ -41,6 +44,8 @@ int main(){
 	int count = collaz_calc(number);
 	cout <<"Your number reached 1 in: " << count << " steps."<< endl;
 	collaz_set();//<\question 2>
+
+	//I WANT TO TEST 3 & 5 two different ways to prove the func. works
 
 	// QUESTION 3
 	//random number between 1-100
@@ -105,8 +110,20 @@ int main(){
 
 
 	//QUESTION 12
+	int length = -1;
+	length = (rand()% 5) +2;
+	int width = -1;
+	width = (rand()% 5) + 2;
+	int depth = -1;
+	depth = (rand() % 5) +2;
 
+	int*** l = NULL;
+	cout<<"Question 12, MAKE Array"<<endl;
 
+	make_array(&l[0], length, width, depth);
+
+	cout<<"Question 12, Array"<<endl;
+	print_array3(&l[0], length, width, depth);
 
 
 	return 0;
@@ -151,8 +168,9 @@ void collaz_set()//Question 2b
 
 	for (int a = start_num; a <= end_num; a = a+1){
 		cout <<"The number "<< a <<" has reached 1 in "<< collaz_calc(a) <<", Collaz is still working"<< endl;
-	}
+	}//for
 }
+
 
 int sort_by_order(int *num1, int *num2, int *num3)//Question 3
 {
@@ -162,13 +180,13 @@ int sort_by_order(int *num1, int *num2, int *num3)//Question 3
 	}//If no work needs to be done
 	if (*num1 > *num2){
 		swap(num1,num2);
-	}
+	}//if greater
 	if (*num2 > *num3){
 		swap(num2,num3);
-	}
+	}//if greater
 	if (*num1 > *num2){
 		swap(num1,num2);
-	}
+	}//if greater
 	return *num1;
 	cout << *num1 <<","<< *num2 <<","<< *num3 << endl;
 }
@@ -177,12 +195,12 @@ bool perfect_number(int num, int test, int sum)//Question 4
 {
 	if (sum == num){
 		cout <<"The number "<< num <<" is a perfect number."<<endl;
-		}
+		}// if equals
 	return true;
 
 	if (test > num/2){
 		cout <<"The number "<< num <<" is not a perfect number."<<endl;
-		}
+		}//if greater
 	return false;
 
 	if (num % test == 0){
@@ -196,17 +214,17 @@ int sort_by_order2(int num1, int num2, int num3)//Question 5
 {
 	if ((num1 <= num2) & (num2 <= num3)){
 		cout <<"true"<< endl;
-		return true;
+		return num1;
 	}//If no work needs to be done
 	if (num1 > num2){
 		swap(num1,num2);
-	}
+	}// if greater
 	if (num2 > num3){
 		swap(num2,num3);
-	}
+	}// if greater
 	if (num1 > num2){
 		swap(num1,num2);
-	}
+	}// if greater
 	return num1;
 	cout << num1 <<","<< num2 <<","<< num3 << endl;
 }
@@ -216,7 +234,7 @@ void random_array(int *arr, int size)//Question 6a
 	for (int i = 0; i < size; i++){
 		int x = rand()%100-50;
 		arr[i] = x;
-	}
+	}//for loop
 	return;
 }
 
@@ -225,7 +243,7 @@ void print_array(int arr[], int size)//Question 6b
 {
 	for (int i = 0; i < size; i++){
 		cout<< arr[i] << endl;
-	}
+	}//for loop
 	return;
 }
 
@@ -233,14 +251,14 @@ void reverse_array(int *arr, int size)//Question 7
 {
 	for (int i = 0; i <= size-1; i++){
 		swap(arr[i], arr[size-1]);
-	}
+	}//for loop
 	print_array(&arr[0], size);
 	return;
 }
 
 
 
-// **THIS IS ERIC ALLEN AND JOHN PAE CODE**
+// **THIS IS ERIC ALLEN AND JOHN PAE's CODE**
 
 
 int min_array(int *arr, int size)//Question 8
@@ -257,17 +275,62 @@ int min_array(int *arr, int size)//Question 8
 
 //Question 9
 int sum_array(int *arr, int size){
-	int sum=arr[size-1];
+	int sum= arr[size-1];
 	if (size-1 > 0){
 		sum = sum + sum_array(&arr[0],size-1);
-		}// if, end condition.
+	}// if, end condition.
 	return sum;
+}
+//QUESTION  10
 
-//QUESTION10
 
+//QUESTION  11
+
+
+//QUESTION  12
+
+void make_array(int*** array, int height, int width, int depth){
+	//int***l = new int**[height];
+	for (int i = 0; i < height; i++) {
+		array[i] =  new int* [width];
+		for (int j = 0; j < width; j++){
+			array[i][j] = new int [depth];
+
+			for (int k = 0; k == depth; k++){
+				array[i][j][k] =  new int;
+				*array[i][j][k]= i+j+k;
+			}
+		}
+	}
+
+	return;
 }
 
 
+//Question 12b
+void print_array3(int*** array, int height, int width, int depth){
+	for (int i = 0; i == height; i++){
+		for (int j = 0; j== width; j++){
+			for (int k = 0; k== depth; k++){
+				cout<< array[i][j][k] <<endl;
+
+			}
+
+		}
+	}
+
+	for (int i = 0; i == height; i++) {
+		delete array[i];
+
+		for (int j = 0; j == width; j++) {
+			delete array[i][j];
+
+			for (int k = 0; k == depth; k++) {
+				delete array[i][j][k];
+			}
+		}
+	}
+	delete array;
 
 
 
@@ -275,7 +338,8 @@ int sum_array(int *arr, int size){
 
 
 
-
+ return;
+}
 
 
 
