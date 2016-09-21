@@ -137,13 +137,13 @@ int main(){
 	int depth = -1;
 	depth = (rand() % 5) +2;
 
-	int*** l = NULL;
+	int*** ll = NULL;
 	cout<<"Question 12"<<endl;
 	cout<<"Make Array"<<endl;
-	make_array(&l[0], length, width, depth);
+	make_array(&ll[0], length, width, depth);
 	// PROGRAM GETS BROKEN IN make_array
 	cout<<"Question 12, Array"<<endl; // doesn't print
-	print_array3(&l[0], length, width, depth);
+	print_array3(&ll[0], length, width, depth);
 
 
 
@@ -365,57 +365,47 @@ void pass_filter(int array[],int window, int size){
 //QUESTION  12
 
 void make_array(int*** array, int length, int width, int depth){
-	int***l = new int**[length];
+	//int***l = new int**[length];
 	for (int i = 0; i < length; i++) {
 		array[i] =  new int* [width];
 		for (int j = 0; j < width; j++){
 			array[i][j] = new int [depth];
-
-			for (int k = 0; k == depth; k++){
-				array[i][j][k] =  i+j+k;
-				//array[i][j][k]= i+j+k;
-			}
-		}
-	}
+			for (int k = 0; k < depth; k++){
+				//array[i][j][k] =  *** l;
+				array[i][j][k]= i+j+k;
+			}// for k
+		}// for j
+	}// for i
 	return;
 }
 
 
 //Question 12b
 void print_array3(int*** array, int length, int width, int depth){
-	for (int i = 0; i == length; i++){
-		for (int j = 0; j== width; j++){
-			for (int k = 0; k== depth; k++){
+	for (int i = 0; i < length; i++){
+		for (int j = 0; j < width; j++){
+			for (int k = 0; k < depth; k++){
 				cout<< array[i][j][k] <<endl;
 
-			}
+			}// for k
 
-		}
-	}
+		}//for j
+	}// for i
 
-	for (int i = 0; i == length; i++) {
+	for (int i = 0; i < length; i++) {
 		delete [] array[i];
 
-		for (int j = 0; j == width; j++) {
+		for (int j = 0; j < width; j++) {
 			delete [] array[i][j];
 
-			for (int k = 0; k == depth; k++) {
+			for (int k = 0; k < depth; k++) {
 				//delete [] array[i][j][k];
-			}
-		}
-	}
+			}//for k
+		}//for j
+	}//for i
 	delete [] array;
 
  return;
 }
-
-
-
-
-
-
-
-
-
 
 
