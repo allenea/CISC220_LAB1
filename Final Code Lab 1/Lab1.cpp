@@ -139,10 +139,10 @@ int main(){
 
 	int*** l = NULL;
 	cout<<"Question 12"<<endl;
-	cout<<"MAKE Array"<<endl;
+	cout<<"Make Array"<<endl;
 	make_array(&l[0], length, width, depth);
-
-	cout<<"Question 12, Array"<<endl;
+	// PROGRAM GETS BROKEN IN make_array
+	cout<<"Question 12, Array"<<endl; // doesn't print
 	print_array3(&l[0], length, width, depth);
 
 
